@@ -1,6 +1,8 @@
 import Post from "./post.js";
 import Comment from "./comment.js";
 import Sequelize from "sequelize";
+import dovenv from "dotenv";
+dovenv.config();
 
 const json = {
   development: {
@@ -11,15 +13,15 @@ const json = {
     dialect: "mysql",
   },
   production: {
-    username: "root",
-    password: "gkfajsl132!",
-    database: "bock",
-    host: "127.0.0.1",
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    host: process.env.HOST,
     dialect: "mysql",
   },
 };
 
-const config = json[process.env.NODE_ENV || "development"];
+const config = json["production"];
 
 const db = {};
 
